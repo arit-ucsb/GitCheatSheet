@@ -1,4 +1,4 @@
-Git Commands • Cheat Sheet
+UCSB ARIT • Git Cheat Sheet
 ===================
 
 
