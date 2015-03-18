@@ -121,6 +121,7 @@ UCSB ARIT • Git Cheat Sheet
                                                   |       git log --since 1.month                   < commits in last month
                                                   |       git log --until "2014-08-15"              < commits back until a date
                                                   |       git log --author "UCSBMike"               < commits by an author
+                                                  |       git shortlog                              < groups commits by user, showing just the subject line
                                                   |
                                                   |
     Commit > See changes from any commit >        |  Use: git show <some hash>                           < will show add/del for line items in files
@@ -188,6 +189,10 @@ UCSB ARIT • Git Cheat Sheet
                                                   |                                                   that point as they never happened. Any file changes will not be lost, but will
                                                   |                                                   be left in the working directory as modified. Using the "--hard" switch will also
                                                   |                                                   delete all the changed files and reset them as well.
+                                                  |
+                                                  |  To rollback a commit pushed to remote:
+                                                  |                                                 < 1) Git reset –hard <sha>
+                                                  |                                                   2) Git push –f origin master (note: -f means ‘force’)
                                                   |
                                                   |  Use: git commit --amend -m                     < allows changes to *last* commit
                                                   |
