@@ -194,6 +194,11 @@ UCSB ARIT • Git Cheat Sheet
                                                   |                                                 < 1) Git reset –hard <sha>
                                                   |                                                   2) Git push –f origin master (note: -f means ‘force’)
                                                   |
+                                                  |  To abort a MERGE:
+                                                  |                                                 < git merge --abort
+                                                  |                                                   or
+                                                  |                                                   git reset --merge
+                                                  |
                                                   |  Use: git commit --amend -m                     < allows changes to *last* commit
                                                   |
     Revert is a way to go back to a previous      |  Use: git revert <tag/branch/commit>            < makes a new commit, basically moving the files from that commit up to the top
