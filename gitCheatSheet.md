@@ -22,6 +22,18 @@ For more in-depth instructions see [gitref.org](gitref.org) or [git-scm.com/docs
 * Pull down a full repository
 `git clone <repo> <directory>` ('repo' is remote repo; 'directory' is local directory; note that 'git pull' = 'git fetch' + 'git merge')
 
+#### Move a repository from one web host to another
+This method should maintain your commit history but that will depend on your chosen host
+* `cd \local\repository\directory`
+* show current remote and the name of the remotes:  `git remote -v`
+* take the name of the remote you'd like to remove (e.g. origin or destination) and plug it into the next command
+* `git remote rm origin`  will remove a remote named 'origin' but substitute your remote name here
+* Push the repo to new host:
+ * `git remote add origin https://user@example.com/userName/remoteRepoName.git`
+ * `git push -u origin master`
+
+
+
 #### Branch
 * Get a list of branches:
 `git branch`
@@ -100,7 +112,7 @@ For more in-depth instructions see [gitref.org](gitref.org) or [git-scm.com/docs
   * `git config --global  alias.lg 'log --oneline --graph --source --all --decorate'`
   * or `git config --global --edit`
   * or `git config --global --list`
-  
+
 * Show: `git show` shows various types of objects: For commits it shows the log message and textual diff. It also presents the merge commit in a special format as produced by `git diff-tree --cc`. For tags, it shows the tag message and the referenced objects. For trees, it shows the names. For plain blobs, it shows the plain contents.
 
 #### Stashing uncommited files:
