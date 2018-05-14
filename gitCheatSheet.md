@@ -155,7 +155,8 @@ This method should maintain your commit history but that will depend on your cho
 #### Remove <file> from version control
  * `git rm --cached <file>` remove <file> from version control, while keeping it in the working repository
  * `git rm <file>` remove <file> from version control and file system; adds to stage in one step
-* Remove untracked files:
+
+#### Remove untracked files:
  * `git-clean` Remove untracked files from the working tree
 
 #### Keep an empty directory:
