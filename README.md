@@ -1,5 +1,5 @@
 # UCSB ARIT • Git Cheat Sheet
-For more in-depth instructions see [gitref.org](https://services.github.com/) or [git-scm.com/docs](https://git-scm.com/docs)
+For more in-depth instructions see [Git Reference](http://git.github.io/git-reference/) or [Git Docs](https://git-scm.com/docs).
 
 ### Configuration   
 * To make changes to 'core.excludes' file and more:
