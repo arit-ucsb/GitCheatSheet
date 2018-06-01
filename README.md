@@ -1,5 +1,5 @@
 # UCSB ARIT • Git Cheat Sheet
-For more in-depth instructions see [gitref.org](gitref.org) or [git-scm.com/docs](git-scm.com/docs)
+For more in-depth instructions see [Git Reference](http://git.github.io/git-reference/) or [Git Docs](https://git-scm.com/docs).
 
 ### Configuration   
 * To make changes to 'core.excludes' file and more:
@@ -14,8 +14,7 @@ For more in-depth instructions see [gitref.org](gitref.org) or [git-scm.com/docs
 * `touch README.md` creates a README.md file (the 'touch' command creates a file if it doesn't exist already and modifies file dates if it does exist)
 
 ### Remote repository  [(more info)](https://help.github.com/articles/adding-a-remote/)
-* `git remote add` adds a remote for the repository
- * `[-t <branch>] [-m <master>] [-f] [--[no-]tags] [--mirror=<fetch|push>] <name> <url>`
+* `git remote add` adds a remote for the repository `[-t <branch>] [-m <master>] [-f] [--[no-]tags] [--mirror=<fetch|push>] <name> <url>`
 * Get list of remote paths ("remotes"):
 `git remote -v`  (The v for verbose shows where push/fetch goes to/comes from)
 
@@ -29,8 +28,8 @@ This method should maintain your commit history but that will depend on your cho
 * take the name of the remote you'd like to remove (e.g. origin or destination) and plug it into the next command
 * `git remote rm origin`  will remove a remote named 'origin' but substitute your remote name here
 * Push the repo to new host:
- * `git remote add origin https://user@example.com/userName/remoteRepoName.git`
- * `git push -u origin master`
+ 1. `git remote add origin https://user@example.com/userName/remoteRepoName.git`
+ 2. `git push -u origin master`
 
 
 
