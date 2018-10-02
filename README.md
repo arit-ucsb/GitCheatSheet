@@ -17,6 +17,11 @@ For more in-depth instructions see [Git Reference](http://git.github.io/git-refe
 * `git remote add` adds a remote for the repository `[-t <branch>] [-m <master>] [-f] [--[no-]tags] [--mirror=<fetch|push>] <name> <url>`
 * Get list of remote paths ("remotes"):
 `git remote -v`  (The v for verbose shows where push/fetch goes to/comes from)
+#### Change remote host [(more info)](https://help.github.com/articles/changing-a-remote-s-url/)
+* First list remotes (see above)
+* Then use `git remote set-url`  which takes two arguments (Remote name and New URL)
+* for example:
+`git remote set-url origin https://github.com/USERNAME/REPOSITORY.git`
 
 * Pull down a full repository
 `git clone <repo> <directory>` ('repo' is remote repo; 'directory' is local directory; note that 'git pull' = 'git fetch' + 'git merge')
