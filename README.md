@@ -17,6 +17,11 @@ For more in-depth instructions see [Git Reference](http://git.github.io/git-refe
 * `git remote add` adds a remote for the repository `[-t <branch>] [-m <master>] [-f] [--[no-]tags] [--mirror=<fetch|push>] <name> <url>`
 * Get list of remote paths ("remotes"):
 `git remote -v`  (The v for verbose shows where push/fetch goes to/comes from)
+#### Change remote host [(more info)](https://help.github.com/articles/changing-a-remote-s-url/)
+* First list remotes (see above)
+* Then use `git remote set-url`  which takes two arguments (Remote name and New URL)
+* for example:
+`git remote set-url origin https://github.com/USERNAME/REPOSITORY.git`
 
 * Pull down a full repository
 `git clone <repo> <directory>` ('repo' is remote repo; 'directory' is local directory; note that 'git pull' = 'git fetch' + 'git merge')
@@ -46,8 +51,7 @@ This method should maintain your commit history but that will depend on your cho
 `git branch -m <oldname> <newname>`
 * Rename the current branch:
 `git branch -m <newname>`
-* Delete a branch:
-  * Only deletes remote branch:
+* Delete a remote branch:
   `git push origin --delete <branch name>`
   * warns if commits not in other branches/won't delete:
   `git branch -d <branch name>`
@@ -56,6 +60,10 @@ This method should maintain your commit history but that will depend on your cho
   * Delete a remote branch:
   `git push origin :<branch name>` (note the space before the colon means push nothing to remote branch effectively deleting the remote branch)
   **OR** `git push origin --delete <branch name>`
+* Delete a local branch:
+  `git branch -d the_local_branch`
+* synchronize  branch list (prunes any remote-tracking branches which no longer exist on the remote):
+  `git fetch -p`
 * Pull down a remote branch 1st time:
 `git checkout -b <remote branch name> --track origin/<remote branch name>` (-b parameter means create the branch if is doesn't already exist)
 * Switch to another branch (if you have uncommitted work, you will need to 'stash' those files):
