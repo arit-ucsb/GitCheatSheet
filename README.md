@@ -52,18 +52,15 @@ This method should maintain your commit history but that will depend on your cho
 * Rename the current branch:
 `git branch -m <newname>`
 * Delete a remote branch:
-  `git push origin --delete <branch name>`
+  * `git push origin :<branch name>` (note the space before the colon means push nothing to remote branch effectively deleting the remote branch)
+  * **OR** `git push origin --delete <branch name>`
+* Delete a local branch:
   * warns if commits not in other branches/won't delete:
   `git branch -d <branch name>`
   * no warning - hard delete:
   `git branch -D <branch name>`
-  * Delete a remote branch:
-  `git push origin :<branch name>` (note the space before the colon means push nothing to remote branch effectively deleting the remote branch)
-  **OR** `git push origin --delete <branch name>`
-* Delete a local branch:
-  `git branch -d the_local_branch`
 * synchronize  branch list (prunes any remote-tracking branches which no longer exist on the remote):
-  `git fetch -p`
+  * `git fetch -p`
 * Pull down a remote branch 1st time:
 `git checkout -b <remote branch name> --track origin/<remote branch name>` (-b parameter means create the branch if is doesn't already exist)
 * Switch to another branch (if you have uncommitted work, you will need to 'stash' those files):
