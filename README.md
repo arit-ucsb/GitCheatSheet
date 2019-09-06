@@ -1,5 +1,5 @@
 # UCSB ARIT • Git Cheat Sheet
-For more in-depth instructions see [gitref.org](gitref.org) or [git-scm.com/docs](git-scm.com/docs)
+For more in-depth instructions see [Git Reference](http://git.github.io/git-reference/) or [Git Docs](https://git-scm.com/docs).
 
 ### Configuration   
 * To make changes to 'core.excludes' file and more:
@@ -14,23 +14,27 @@ For more in-depth instructions see [gitref.org](gitref.org) or [git-scm.com/docs
 * `touch README.md` creates a README.md file (the 'touch' command creates a file if it doesn't exist already and modifies file dates if it does exist)
 
 ### Remote repository  [(more info)](https://help.github.com/articles/adding-a-remote/)
-* `git remote add` adds a remote for the repository
- * `[-t <branch>] [-m <master>] [-f] [--[no-]tags] [--mirror=<fetch|push>] <name> <url>`
+* `git remote add` adds a remote for the repository `[-t <branch>] [-m <master>] [-f] [--[no-]tags] [--mirror=<fetch|push>] <name> <url>`
 * Get list of remote paths ("remotes"):
 `git remote -v`  (The v for verbose shows where push/fetch goes to/comes from)
+#### Change remote host [(more info)](https://help.github.com/articles/changing-a-remote-s-url/)
+* First list remotes (see above)
+* Then use `git remote set-url`  which takes two arguments (Remote name and New URL)
+* for example:
+`git remote set-url origin https://github.com/USERNAME/REPOSITORY.git`
 
 * Pull down a full repository
 `git clone <repo> <directory>` ('repo' is remote repo; 'directory' is local directory; note that 'git pull' = 'git fetch' + 'git merge')
 
-###### Move a repository from one web host to another
+##### Move a repository from one web host to another
 This method should maintain your commit history but that will depend on your chosen host
 * `cd \local\repository\directory`
 * show current remote and the name of the remotes:  `git remote -v`
 * take the name of the remote you'd like to remove (e.g. origin or destination) and plug it into the next command
 * `git remote rm origin`  will remove a remote named 'origin' but substitute your remote name here
 * Push the repo to new host:
- * `git remote add origin https://user@example.com/userName/remoteRepoName.git`
- * `git push -u origin master`
+ 1. `git remote add origin https://user@example.com/userName/remoteRepoName.git`
+ 2. `git push -u origin master`
 
 
 
@@ -47,16 +51,16 @@ This method should maintain your commit history but that will depend on your cho
 `git branch -m <oldname> <newname>`
 * Rename the current branch:
 `git branch -m <newname>`
-* Delete a branch:
-  * Only deletes remote branch:
-  `git push origin --delete <branch name>`
+* Delete a remote branch:
+  * `git push origin :<branch name>` (note the space before the colon means push nothing to remote branch effectively deleting the remote branch)
+  * **OR** `git push origin --delete <branch name>`
+* Delete a local branch:
   * warns if commits not in other branches/won't delete:
   `git branch -d <branch name>`
   * no warning - hard delete:
   `git branch -D <branch name>`
-  * Delete a remote branch:
-  `git push origin :<branch name>` (note the space before the colon means push nothing to remote branch effectively deleting the remote branch)
-  **OR** `git push origin --delete <branch name>`
+* synchronize  branch list (prunes any remote-tracking branches which no longer exist on the remote):
+  * `git fetch -p`
 * Pull down a remote branch 1st time:
 `git checkout -b <remote branch name> --track origin/<remote branch name>` (-b parameter means create the branch if is doesn't already exist)
 * Switch to another branch (if you have uncommitted work, you will need to 'stash' those files):
@@ -80,25 +84,28 @@ This method should maintain your commit history but that will depend on your cho
 `git branch --merged` <-  branches merged into the branch you’re on (contain every commit in common)
 
 ### Commits
-###### Make Some
+##### Make Some
 * Commit some work
 `git commit -m "First commit"`
 
-###### Tags
+##### Tags
 * Add tags
 `git tag -a <the tag> -m <message>`
 * Add tag to older commit
   * e.g. `git tag -a v1.2 9fceb02 -m "Message"` Where 9fceb02 is the beginning part of the commit id hash
   * You can then push them up using this: `git push --tags origin master`
+* If missing tags from a remote repo try: `git fetch --tags`
+* Checkout at a specific tag: `git checkout tags/<tag>` e.g. `git checkout tags/v1.0.1`
+* Checkout a specific tag into a new branch: `git checkout tags/v1.0 -b NewBranch`
 
-###### Diffs
+##### Diffs
  * to see the changes in your working folder vs the last commit: `git diff`
  * to see the difference between that commit and the current state: `git diff <some hash>`
  * to compare between two different commits: `git diff <hash1> <hash2>`
  * to compare staged to last commit: `git diff --cached syn: git diff --staged`
  * good options to view summary of diff: `git diff --stat --summary`
 
-###### Logs
+##### Logs
  * summarize what has happened on a branch or between commits or between local and remote branches: `git log -p `
 * Get a list of commits: `git log`
  * for 10 latest commits: `git log -n 10`
@@ -108,19 +115,19 @@ This method should maintain your commit history but that will depend on your cho
  * commits by an author: `git log --author "UCSBMike"`
  * groups commits by user, showing just the subject line: `git shortlog`
 
-###### Show
+##### Show
 * See changes from any commit (will show add/del for line items in files):
 `git show <some hash>`
 * Show: `git show` shows various types of objects: For commits it shows the log message and textual diff. It also presents the merge commit in a special format as produced by `git diff-tree --cc`. For tags, it shows the tag message and the referenced objects. For trees, it shows the names. For plain blobs, it shows the plain contents.
 
-###### Find
+##### Find
 * Find commit with criteria:
  * e.g. show commits that mention "v2.0" and written by "UCSBMike": `git log --all-match --grep=v2.0 --author=UCSBMike`
 
 ### Suggested commands for helpful views
- * Alias this:
   * `git log --oneline --graph --source --all --decorate`
-  * `git config --global  alias.lg 'log --oneline --graph --source --all --decorate'`
+  * To get the last 5 commits append `-5` to the git log command
+  * Alias this: `git config --global  alias.lg 'log --oneline --graph --source --all --decorate'`
   * or `git config --global --edit`
   * or `git config --global --list`
 
@@ -162,14 +169,14 @@ This method should maintain your commit history but that will depend on your cho
 * `git revert <SHA>`
 
 ### Organize
-###### Remove <file> from version control
+##### Remove <file> from version control
  * `git rm --cached <file>` remove <file> from version control, while keeping it in the working repository
  * `git rm <file>` remove <file> from version control and file system; adds to stage in one step
 
-###### Remove untracked files:
+##### Remove untracked files:
  * `git-clean` Remove untracked files from the working tree
 
-###### Keep an empty directory:
+##### Keep an empty directory:
  * Create a .gitkeep file (empty file) so that Git can track the directory
 
 ### Fork A Repo  [more info](https://help.github.com/articles/fork-a-repo/)
@@ -208,3 +215,7 @@ Aside: understanding the reflog means you can't really lose data from your repo 
 an older commit, or rebase wrongly, or any other operation that visually "removes" commits, you can use the reflog to see where you were
 before and git reset --hard back to that ref to restore your previous state. Remember, refs imply not just the commit but the entire
 history behind it.
+
+## Places to Practice (Try before you buy):
+* [Visualizing git (in browser)](http://git-school.github.io/visualizing-git/)
+* [Learn git branching (in browser)](https://learngitbranching.js.org/)
